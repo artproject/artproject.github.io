@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="icon" href=""/>
+		<title>our art project</title>
+
+		<link href="https://fonts.googleapis.com/css?family=Work Sans:400,700" rel="stylesheet">
+
+		<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+		<script src="/Users/andrewkuznetsov/Desktop/design/jquery.js"></script>
+		<script type="text/javascript">
+		$(document).ready(function(){
+			$('li').each(function(){
+				// set top border of same color
+				// disable bottom border of previous list item
+				if ($(this).prev().length) // normal case
+				{
+					$(this)
+						.mouseenter(function(){
+							$(this).prev().css('border-bottom', 'none');
+							$(this).css('border-top', '1px solid #A531BD');
+							$(this).css('border-bottom', '1px solid #A531BD');
+						})
+						.mouseleave(function(){
+							$(this).prev().css('border-bottom', '1px solid #FF3D94');
+							$(this).css('border-top', 'none');
+							$(this).css('border-bottom', '1px solid #FF3D94');
+						});
+				}
+			});
+		});
+		</script>
+		<style type="text/css">
+		body
+		{
+			font-family: 'Work Sans', 'arial black', sans-serif;
+			margin: none;
+			text-align: center;
+		}
+		.heading
+		{
+			font-size: 96px;
+			color: #FF3D94;
+			font-weight: 700;
+		}
+		.heading:hover
+		{
+			text-shadow: 5px 5px #A531BD;
+		}
+		ul
+		{
+			list-style: none;
+			margin: 50px 0px;
+		}
+		li
+		{
+			font-size: 22px;
+			font-weight: 400;
+			padding: 7px 0px;
+			border-bottom: 1px solid #FF3D94;
+			color: #FF3D94;
+			width: 750px;
+			margin: 0px auto;
+		}
+		li:after
+		{
+			content: '';
+			background-image: url('http://ciappara.com/blog/wp-content/uploads/2014/11/link-new-tab.png');
+			width: 12px;
+			height: 12px;
+			background-size: 12px 12px;
+			margin-left: 25px;
+			opacity: 0;
+			display: inline-block;
+		}
+		li:first-child
+		{
+			border-top: 1px solid #FF3D94;
+		}
+		li:first-child:hover
+		{
+			border-top: 1px solid #A531BD;
+			border-bottom: 1px solid #A531BD !important;
+		}
+		li:hover
+		{
+			color: #A531BD;
+			font-weight: 700;
+			cursor: pointer;
+		}
+		li:hover:after
+		{
+			opacity: .99;
+		}
+		</style>
+	</head>
+	<body>
+		<span class="heading">Table of Contents</span>
+		<ul>
+			<li>Dictionary</li>
+			<li>Book Talk by Leif Steberg, Lund University</li>
+			<li>Variation on the theme of sweet corn</li>
+			<li>Newark, Delaware</li>
+			<li>So nice to hear from you. I'll be teaching two courses in spring.</li>
+			<li>I like this!</li>
+			<li>Saludos para todos los extra&n;amos mucho.</li>
+			<li>Questionable, but I mean...I will</li>
+			<li>War</li>
+			<li>*Hyperventilates*</li>
+		</ul>
+	</body>
+</html>

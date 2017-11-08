@@ -1,0 +1,130 @@
+<html>
+	<head>
+		<link rel="icon" href=""/>
+		<title>our art project</title>
+
+		<link href="https://fonts.googleapis.com/css?family=Crimson Text" rel="stylesheet">
+
+		<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+		<script src="/Users/andrewkuznetsov/Desktop/design/jquery.js"></script> <!-- local file -->
+
+		<script type="text/javascript">
+		$(document).ready(buffering);
+
+		$(window).resize(function(){
+			$('.buffer').remove();
+			buffering();
+		});
+
+		function buffering(){
+			var windowWidth = $(window).outerWidth();
+			var totalWidth = 0;
+			var buffers = 0;
+
+			$('div').each(function(){
+				$(this).css('font-size', windowWidth/21.3);
+
+				var width = $(this).outerWidth();
+				var height = $(this).outerHeight();
+				totalWidth = totalWidth + width;
+
+				var currentDiv = $(this);
+				if (totalWidth > windowWidth)
+				{
+
+					//creating the buffer
+					var newDiv = $("<div class='buffer'></div>");
+
+					//placing it
+					if (buffers%2 == 0)
+					{
+						currentDiv.parent().prev().before(newDiv);
+					}
+					else
+					{
+						currentDiv.closest('a').before(newDiv);
+					}
+					buffers++;
+
+					//adjusting its width
+					var difference = totalWidth - windowWidth;
+					var newElementWidth = width - difference;
+					newDiv.width(newElementWidth - 31);
+					newDiv.height(height);
+					totalWidth = width;
+				}
+			});
+		}
+
+		$(document).ready(function(){
+
+			var colors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo'];
+			var index = 0;
+
+			$('div').hover(
+				function()
+				{
+					if (!$(this).hasClass('block')) 
+					{
+						var color = colors[(index)%6];
+						$(this).css('background-color', color);
+						index++;
+					}
+				}, function()
+				{
+					if ($(this).hasClass('block')) 
+					{
+						$(this).css('background-color', '#FFF');
+					}
+					// else
+					// {
+					// 	$(this).css('background-color', '#000');
+					// }
+				}
+			);
+		});
+		</script>
+		<style type="text/css">
+		body
+		{
+			margin: 0;
+			padding: 0;
+		}
+		div
+		{
+			font-family: 'Arial Black';
+			font-size: 60px;
+			background-color: #000;
+			color: #FFF;
+			padding: 0px 15px;
+			float: left;
+
+		}
+		div.block{
+			color: #000;
+			background-color: #FFF;
+		}
+		div:hover
+		{
+			color: #FFF;
+		}
+		</style>
+	</head>
+	<body>
+		<div class="block">Contributors ></div>
+		<a href="read/andrew%20kuznetsov/about.html"><div>Andrew Kuznetsov</div></a>
+		<a href="/"><div>Nelli Astvatsatarian</div></a>
+		<a href="/"><div>Hannah Haugenes</div></a>
+		<a href="/"><div>Jessie Moore</div></a>
+		<a href="/"><div>Ayomide Odumosu</div></a>
+		<a href="/"><div>Sunny Young</div></a>
+		<a href="/"><div>Adonis Brooks</div></a>
+		<a href="/"><div>Rebecca Plotkin</div></a>
+		<a href="/"><div>Chris Garcia</div></a>
+		<a href="/"><div>Natalie Raskin</div></a>
+		<a href="/"><div>Paige Hunter</div></a>
+		<a href="/"><div>Spenser Atlas</div></a>
+		<a href="index.html"><div class="block">< Return</div></a>
+		<a href="submit.html"><div class="block">Contribute</div></a>
+	</body>	
+</html>

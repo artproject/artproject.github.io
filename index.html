@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="icon" href=""/>
+		<title>our art project</title>
+
+		<link href="https://fonts.googleapis.com/css?family=Work Sans:400,700" rel="stylesheet">
+
+		<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+		<script src="/Users/andrewkuznetsov/Desktop/design/jquery.js"></script> <!-- local file -->
+
+		<script type="text/javascript">
+		$(document).ready(function(){
+			function GetClock(){
+					var d=new Date();
+					var nmonth=d.getMonth(),ndate=d.getDate(),nyear=d.getYear();
+					if(nyear<1000) nyear+=1900;
+					var nhour=d.getHours(),nmin=d.getMinutes(),nsec=d.getSeconds();
+					if(nmin<=9) nmin="0"+nmin
+					if(nsec<=9) nsec="0"+nsec;
+
+					date = ndate+"."+nmonth+"."+nyear;
+					time = nhour+":"+nmin+":"+nsec;
+					add = (ndate + nhour) + ";" + (nmonth + nmin) + "A" + (nyear + nsec);
+
+					$('body').attr('data-content', date + ' + ' + time + ' = THE HOUR IS UPON US = ' + add);
+				}
+
+			window.onload=function(){
+			GetClock();
+			setInterval(GetClock,1000);
+			}
+
+			$('nav').mouseleave(function(){
+				$('.toggle').hide();
+				$('.pm').text('+');
+			});
+		});
+		</script>
+
+		<style type="text/css">
+			body, html
+			{
+				margin: 0px;
+			}
+			body
+			{
+				background-color: #Fa9be2;
+				background-image: url('file:///Users/andrewkuznetsov/Desktop/art%20project/images/index_background.png');
+				background-repeat: repeat;
+				font-family: 'Work Sans', arial;
+				font-weight: 700;
+			}
+			
+			/*header and footer */
+
+			body:after
+			{
+				content: attr(data-content);
+				position: fixed;
+				bottom: 0px;
+				font-size: 35px;
+				padding: 5px 0px;
+			}
+			body:before
+			{
+				content: "to speak i breathe a feat to keep i look to you an expo too i leave to herd the simple word to work and be i creep to feel-- can you breathe? is it feel? what's it like? paisley steel";
+				position: fixed;
+				top: 0px;
+				font-size: 15px;
+				padding: 7px 0px;
+				overflow: hidden;
+				white-space: nowrap;
+				font-style: italic;
+			}
+
+			body:after, body:before
+			{
+				width: 100%;
+				background-color: #51AD47;
+				text-align: center;
+				color: #AEFF57;
+				text-shadow: 3px 3px #FF575A;
+				text-transform: uppercase;
+			}
+			/*body:hover:after, body:hover:before
+			{
+				color: #FF9100;
+				text-shadow: 3px 3px #57FFFC;
+				background-color: #FF54AD;
+			}*/
+			#header, #footer
+			{
+				background-color: #159635;
+				height: 75px;
+				width: 100%;
+				display: none;
+			}
+			#header
+			{
+				position: fixed;
+				top: 0px;
+			}
+
+			#main
+			{
+				position: fixed;
+				top: 200px;
+				right: 330px;
+				width: 243px;
+				padding: 0px 10px;
+				background-color: #C967B1;
+				color: #AD4794;
+				border-style: solid;
+				border-width: 0px 5px;
+				border-color: #C967B1;
+				text-align: center;
+			}
+			/*#main, #main:after, #main:before
+			{
+				box-shadow: 5px 5px #51AD47;
+			}*/
+			#main:after
+			{
+				content: "";
+				position: absolute;
+				bottom: -97px;
+				left: -5px;
+				width: 0px;
+				height: 0px;
+				border-style: solid;
+				border-width: 97px 273px 0px 0px;
+				border-color: #C967B1 transparent;
+			}
+			#main:before
+			{
+				content: "";
+				position: absolute;
+				top: -97px;
+				left: -5px;
+				width: 0px;
+				height: 0px;
+				border-style: solid;
+				border-width: 0px 0px 97px 273px;
+				border-color: #C967B1 transparent;
+			}
+			#main:hover, nav:hover
+			{
+				background-color: #FFF;
+				color: #51AD47;
+				border-color: yellow;
+			}
+			#main:hover:before, #main:hover:after, nav:hover:before, nav:hover:after
+			{
+				border-color: #FFF transparent;
+			}
+			nav
+			{
+				position: fixed;
+				top: 200px;
+				right: 175px;
+				padding: 10px 10px 40px 10px;
+				background-color: #C967B1;
+				color: #AD4794;
+				width: 176px;
+			}
+			nav:after
+			{	
+				content: "";
+				position: absolute;
+				bottom: -97px;
+				left: 0px;
+				width: 0px;
+				height: 0px;
+				border-style: solid;
+				border-width: 97px 196px 0px 0px;
+				border-color: #C967B1 transparent;				
+			}
+			nav:before
+			{	
+				content: "";
+				position: absolute;
+				top: -97px;
+				left: 0px;
+				width: 0px;
+				height: 0px;
+				border-style: solid;
+				border-width: 0px 0px 97px 196px;
+				border-color: #C967B1 transparent;				
+			}
+			nav li
+			{
+				list-style: none;
+				margin-left: none;
+				border-bottom: 1px solid #AD4794;
+				transform: rotate(-25deg);
+			}
+			nav li:hover
+			{
+				color: #51AD47;
+			}
+
+			nav:hover li
+			{
+				border-color: #51AD47;
+			}
+
+			nav:hover li:hover
+			{
+				color: #AD4794;
+				border-color: #AD4794;
+			}
+
+			/* toggleli */
+
+
+			nav li.toggle, nav li.toggle:hover
+			{
+				display: none;
+				margin-left: 1em;
+			}
+
+
+
+			#main:hover, nav:hover
+			{
+				z-index: 101;
+			}
+
+			/*cover design*/
+
+			img.one
+			{
+				position: absolute;
+				top: 100px;
+				left: 100px;
+				width: 635px;
+				height: 455px;
+			}
+			/*img.one:hover
+			{
+				background-color: yellow;
+				box-shadow: 25px 25px yellow;
+			}*/
+
+			img.plant
+			{
+				position: absolute;
+				top: 0px;
+				left: 0px;
+				height: 950px;
+			}
+
+			/* links */
+
+			a, a:hover, .pseudolink
+			{
+				text-decoration: none;
+				color: inherit;
+				cursor: cell;
+			}
+
+		</style>
+	</head>
+	<body data-content="the hour is upon us">
+		<img src="file:///Users/andrewkuznetsov/Desktop/art%20project/images/faces.png" class="one"/>
+		<div id="container">
+			<div id="main">
+				<h1>arTProjeCt</h1>
+			</div>
+			<nav>
+				<a href="about.html"><li>about</li></a>
+				<a href="contributors.html"><li class="pseudolink">contributors</li></a>
+				<a href="submit.html"><li>submit</li></a>
+			</nav>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="icon" href=""/>
+		<title>our art project</title>
+
+		<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+		<script src="/Users/andrewkuznetsov/Desktop/design/jquery.js"></script> <!-- local file -->
+
+		<script type="text/javascript">
+		$(document).ready(function(){
+			$('#container').scroll(function(){
+				var currentPosition = $(this).scrollTop();
+				var digit = currentPosition%100;
+
+				if (digit > 10 && digit <= 20)
+				{
+					$('#container').css('background-image', 'url(images/about2.png)');
+				}
+				else if (digit > 20 && digit <= 40)
+				{
+					$('#container').css('background-image', 'url(images/about1.png)');
+				}
+				else if (digit > 40 && digit <= 60)
+				{
+					$('#container').css('background-image', 'url(images/about4.png)');
+				}
+				else if (digit > 60 && digit <= 80)
+				{
+					$('#container').css('background-image', 'url(images/about3.png)');
+				}
+				else
+				{
+					$('#container').css('background-image', 'url(images/about5.png)');
+				}
+			});
+		});
+
+		</script>
+		<style type="text/css">
+		body, html
+		{
+			height: 100%;
+			margin: 0px;
+			color: #FFF;
+			font-family: 'Arial Black';
+		}
+		#container
+		{
+			width: 100%;
+			height: 100%;
+			/*background-color: red;*/
+			background-image: url('images/about5.png');
+			overflow: auto;
+		}
+		#text
+		{
+			text-align: justify;
+			font-size: 92px;
+			text-shadow: -1px -1px 0 #6119a4,
+						 1px -1px 0 #6119a4,
+						 -1px 1px 0 #6119a4,
+						 1px 1px 0 #6119a4;
+			margin-bottom: 100px;
+			text-decoration: underline;
+		}
+		span.digit
+		{
+			background-color: #6119a4;
+		}
+		/*arbitrary hover effect*/
+		span.hover
+		{
+			font-style: italic;
+			font-family: 'Times New Roman';
+			text-decoration: underline;
+		}
+		#banner
+		{
+			font-size: 125px;
+			text-align: center;
+			text-shadow: -3px -3px 0 #6119a4,
+						 3px -3px 0 #6119a4,
+						 -3px 3px 0 #6119a4,
+						 3px 3px 0 #6119a4;
+			/*background-color: #89eb14;*/
+			background-image: url('images/banner.png');
+		}
+		nav
+		{
+			font-size: 35px;
+		}
+		nav a
+		{
+			color: #FFF;
+			margin: 0px 25px;
+			float: right;
+		}
+		nav a:hover
+		{
+			color: #6119a4;
+			text-decoration: none;
+		}
+		</style>
+</head>
+<body>
+	<div id="container">
+		<div id="banner">arTprojeCt is</div>
+		<div id="text">
+			<span class="digit">01.</span> an online art collective
+			producing ongoing publications
+
+			<span class="digit">02.</span> a <span class="hover">network</span> organizing
+			self-directed platforms for talented artists
+
+			<span class="digit">03.</span> inspired by web <span class="hover">brutalism</span>
+			and the possibility of multimedia and <span class="hover">interactive</span> art
+
+			<span class="digit">04.</span> The <span class="hover">visual experience</span> of <span>artproject.space</span> 
+			is an art project <span class="hover">in itself</span>
+		</div>
+
+		<nav>
+			<span class="digit">Berkeley, California, USA</span>
+			<a href="submit.html">Contribute</a>
+			<a href="index.html">< Return</a>
+		</nav>
+		<div id="banner">cOllecTiVe</div>
+	</div>
+</body>
+</html>
