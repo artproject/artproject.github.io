@@ -1,0 +1,866 @@
+<html>
+	<head>
+		<link rel="icon" href=""/>
+		<title>our art project</title>
+
+		<link href='https://fonts.googleapis.com/css?family=Raleway:200,400,800' rel='stylesheet' type='text/css'>
+
+		<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+		<script src="/Users/andrewkuznetsov/Desktop/design/jquery.js"></script> <!-- local file -->
+		<script type="text/javascript">
+
+
+		//randomize photo
+		function randomizePhoto(){
+			var urls = ['card.jpg', 'door.jpg', 'fall.jpg', 'girl.jpg', 'pain.png', 'paris.png', 'ritual.jpg', 'baby.JPG'];
+			var rand = Math.floor(Math.random() * 8);
+			var url = 'images/poemimg/' + urls[rand]; 
+			$('#header').css('background-image', 'url(' + url +')');
+			$('#header img').attr('src', url);
+		}
+
+		//restore
+
+		function restore(){
+			$('.b').removeClass('b');
+			$('.yellow').removeClass('yellow');
+			$('.restore').addClass('yellow');
+
+			randomizePhoto();
+			currentPosition = 0;
+		}
+
+		$(document).ready(randomizePhoto);
+
+		$(document).ready(function(){
+
+			$("#drawings").width($(window).width() - $('#nav').width());
+			
+			//add numbers
+			$('#writing article').each(function(){
+				var index = $(this).index('article') + 1;
+				$(this).prepend("<span class='num pre'>" + index + "</span>");
+				$(this).append("<span class='num app'>" + index + "</span>");
+				$(this).addClass("item" + index)
+			});
+
+			//navigation
+			$('#subnav li').click(function(){
+				// //hide header
+				// $('#header').hide();
+				// // display correct item
+				// $('article').hide();
+				// if ($(this).hasClass('') === false)
+				// {
+				// 	var classes = $(this).attr('class').split(/\s+/);
+				// 	$.each(classes, function(index, item){
+				// 		var element = 'item' + item;
+				// 		$('.' + element).toggle();
+				// 	});
+				// }
+				// // bold this li and its parent
+				$('.b').removeClass('b');
+				$(this).addClass('b');
+				$(this).parent().prev().addClass('b');
+			});
+
+
+			//restore index
+			$(".restore").click(function(){
+				restore();
+			});
+
+			var currentPosition;
+			// var articlePositions = new Array();
+
+
+			// $('#writing article').each(function()
+			// {
+			// 	var aP = $(this).offset().top;
+			// 	articlePositions.push(aP);
+			// });
+
+			$(window).scroll(function()
+			{
+				currentPosition = $(this).scrollTop();
+
+				var wP = $('#writing').offset().top;
+				var dP = $('#drawings').offset().top;
+
+				// var poemIndex = 0;
+
+				// if (currentPosition >= articlePositions[poemIndex])
+				// {
+				// 	poemIndex++;
+				// 	console.log(poemIndex);
+				// 	//pass bold
+				// 	$('.poetry li:nth-child(' + poemIndex + ')').addClass('.b');
+				// }
+
+				if (currentPosition == 0)
+				{
+					restore();
+				}
+				if (currentPosition > wP)
+				{
+					$('.b').removeClass('b');
+					$('.yellow').removeClass('yellow');
+					$('.writing').addClass('yellow');
+					$('.poetry').addClass('yellow');
+					$('.writing').addClass('b');
+				}
+				if (currentPosition > dP)
+				{
+					$('.b').removeClass('b');
+					$('.yellow').removeClass('yellow');
+					$('.drawings').addClass('yellow');
+					$('.drawings').addClass('b');
+				}
+			});
+
+			// drawings
+
+			$('#drawings img').each(function(){
+				var width = $(this).width();
+				var height = $(this).height();
+				var factor = 6.25;
+				if ($(this).hasClass('noshrink')){factor = 1.15;}
+				$(this).width(width/factor);
+				$(this).height(height/factor);
+			});
+
+			$('#drawings img.hoverable').hover(function(){
+			    $(this).attr("src", function(index, attr){
+			        return attr.replace(".png", "2.png");
+			    });
+			}, function(){
+			    $(this).attr("src", function(index, attr){
+			        return attr.replace("2.png", ".png");
+			    });
+			});
+		});
+		</script>
+
+		<style type="text/css">
+			body, html, p
+			{
+				margin: 0px;
+				padding: none;
+			}
+			.hide
+			{
+				display: none;
+			}
+			.tab
+			{
+				margin-left: 2em;
+			}
+			article
+			{
+				margin-left: 100px;
+
+			}
+			input:focus
+			{
+				outline: none;
+			}
+			#header
+			{
+				display: inline-block;
+				text-align: center;
+				margin-left: 150px;
+			}
+			#header:hover
+			{
+				background-size: 15% 15%;
+				background-repeat: repeat;
+			}
+			#header:hover img
+			{
+				transform: scaleY(-1);
+				-webkit-transform: scaleY(-1);
+			}
+			#header img
+			{
+				padding: 50px 50px;
+				max-width: 406px;
+			}
+			/* circle */
+			#circle
+			{
+				width: 225px;
+				height: 160px;
+				padding-top: 65px;
+				border-radius: 50%;
+				border: 3px dotted #7F00AD;
+				text-align: center;
+				font-family: 'gill sans', 'geneva', sans-serif;
+				color: #7F00AD;
+				float: left;
+				font-size: 19px;
+			}
+			#circle:hover
+			{
+				background-color: #7F00AD;
+				color: #FFF;
+			}
+			/* pink */
+			#endormir
+			{
+				width: 650px;
+				color: #FF0077;
+				font-family: 'arial black', arial;
+			}
+			.pinky
+			{
+				color: #fff;
+				font-family: 'andale mono', monospace;
+				font-size: 15px;
+				font-weight: bold;
+				background-color: #FF0077;
+				line-height: 250%;
+				padding: 3px;
+				margin-right: 5em;
+			}
+			.pinky:hover .highlight
+			{
+				background-color: #AEFF00;
+				color: #383838;
+			}
+			/* prognat */
+			#prognat
+			{
+				margin: 100px 0px 0px 300px;
+				width: 600px;
+				font-family: 'Baskerville', 'Times New Roman', serif;
+				font-size: 55px;
+				font-weight: bold;
+				color: #FFF;
+				text-shadow: -1px -1px 0 #383838,
+							 1px -1px 0 #383838,
+							 -1px 1px 0 #383838,
+							 1px 1px 0 #383838;
+				transform: scaleY(-1);
+				-webkit-transform: scaleY(-1);
+			}
+			#prognat:hover
+			{
+				transform: scaleY(1);
+				-webkit-transform: scaleY(1);
+				text-align: right;
+			}
+			#prognat .num, #prognat:hover .highlight
+			{
+				color: #5AD6D6;
+			}
+			#prognat:active .num, #prognat:active .highlight
+			{
+				color: #98D65A;
+			}
+			/* wet */
+			#wet
+			{
+				font-family: 'geneva', sans-serif;
+				font-size: 14px;
+				color: #5D00FF;
+				width: 300px;
+				display: inline;
+			}
+			#wet .highlight, #wet .num
+			{
+				font-weight: bold;
+				font-size: 18px;
+				color: #FFF;
+				text-shadow: -1px -1px 0 #5D00FF,
+							 1px -1px 0 #5D00FF,
+							 -1px 1px 0 #5D00FF,
+							 1px 1px 0 #5D00FF;
+			}
+			#wet .app
+			{
+				margin-left: 5em;
+			}
+			#wet .jolt
+			{
+				position: relative;
+				top: -3px;
+			}
+			#wet .sink
+			{
+				position: relative;
+				top: 3px;
+			}
+			/* bCourses */
+			#bcourses
+			{
+				font-family: 'Helvetica Neue', 'Helvetica', 'arial', sans-serif;
+				font-size: 20px;
+				color: #00108C;
+				width: 472px;
+				display: inline-block;
+				float: left;
+				margin: 20px 0px 0px 100px;
+			}
+			#bcourses input
+			{
+				display: block;
+				margin-bottom: 10px;
+			}
+			#bcourses input[type=text]
+			{
+				width: 400px;
+				padding: 3px;
+				color: #00108C;
+				background-color: #FFE400;
+				border: none;
+			}
+			#bcourses input[type=text]:focus, #bcourses input[type=submit]:active
+			{
+				background-color: #FFD426;
+			}
+			#bcourses input[type=submit]
+			{
+				border: none;
+				background-color: #FFE400;
+				font-size: 20px;
+				color: #00108C;
+				border: 1px solid #00108C;
+				cursor: pointer;
+			}
+			#bcourses .cc
+			{
+				font-size: 10px;
+			}
+			#bcourses .num
+			{
+				font-family: 'times new roman', serif;
+				font-size: 12px;
+				font-weight: bold;
+				padding: 3px 6px;
+				border-radius: 50%;
+				color: #FFE400;
+				background-color: #00108C;
+				border: 2px solid #FFE400;
+				box-shadow: -1px -1px 0 #00108C,
+							 1px -1px 0 #00108C,
+							 -1px 1px 0 #00108C,
+							 1px 1px 0 #00108C;
+			}
+			/* search */
+			#search
+			{
+				font-family: arial;
+				color: #000;
+				font-size: 11px;
+				width: 300px;
+				float: left;
+			}
+			#search .search
+			{
+				background-color: #FFA600;
+				padding: 3px;
+				color: #FFF;
+				cursor: pointer;
+			}
+			#search input[type=text]
+			{
+				width: 200px;
+				margin: 0px;
+			}
+			#search .web
+			{
+				display: block;
+				background-color: #B0E5FF;
+				border-top: 1px solid #5699BA;
+				margin: 5px 0px 10px 0px;
+			}
+			#search .pslink
+			{
+				font-size: 14px;
+				color: #0011FF;
+				border-bottom: 1px solid #0011FF;
+				cursor: pointer;
+			}
+			#search a
+			{
+				color: #02DB1C;
+				text-decoration: none;
+			}
+			/* longue */
+
+			#longue
+			{
+				width: 532px;
+				height: 700px;
+				background: url('images/poemimg/frame.png') no-repeat;
+				background-size: contain;
+				overflow: hidden;
+				color: #77ad7e;
+				font-family: 'Geneva', sans-serif;
+				font-size: 14px;
+				/*clear: right;*/
+			}
+			#longue div
+			{
+				height: 565px;
+				width: 412px;
+				position: relative;
+				left: 50px;
+				top: 36px;
+				overflow: scroll;
+				text-align: justify;
+				padding: 10px;
+				color: #f886d2;
+				font-family: 'geneva', arial;
+			}
+			#longue .num
+			{
+				color: #291df1;
+				font-weight: bold;
+				font-size: 22px;
+				position: relative;
+				top: 13px;
+				left: 18px;
+				font-family: 'arial black';
+			}
+			#longue .app
+			{
+				display: none;
+			}
+			#longue img
+			{
+				display: block;
+				margin: 30 auto;
+				width: 80px;
+				height: 80px;
+			}
+			#longue .highlight, #longue .title
+			{
+				background-color: #f886d2;
+				color: #FFF;
+				font-family: 'arial black', arial;
+			}
+			/*misfortune*/
+			#misfortune
+			{
+				line-height: 150%;
+				font-family: 'Didot', serif;
+				font-size: 18px;
+				color: #BA0035;
+				width: 472px;
+			}
+			#misfortune .num
+			{
+				background-color: #BA0035;
+				color: #FFF;
+			}
+			/* body3*/
+
+			#body3
+			{
+				padding: 10px;
+				width: 550px;
+				background-color: #f886d2;
+				color: #FFF;
+				font-family: 'Hoefler Text';
+			}
+			#body3 h6
+			{
+				font-size: 28px;
+				border-bottom: 1px dotted #FFF;
+			}
+
+			/* dog */
+			#dog 
+			{
+				font-family: 'arial black', arial, sans-serif;
+				font-size: 16px;
+				width: 600px;
+				clear: none;
+				border-left: 5px solid #00402D;
+				border-right: 5px solid #00402D;
+				background-color: #00402D;
+				color: #00E39F;
+			}
+			#dog .title
+			{
+				background-color: #7A0025;
+				color: #E30044;
+				border-bottom: 5px solid #00402D;
+				display: block;
+				font-size: 22px;
+			}
+			#dog .pre
+			{
+				display: none;
+			}
+			#dog .num
+			{
+				color: #7A0025;
+			}
+			#dog .app:after, #dog .app:before
+			{
+				content: '-------------';
+			}
+
+			/* lover */
+			/* dubai */
+			/* thirteen */
+
+			/* NAV */
+
+			ul#nav
+			{
+				position: fixed;
+				top: 0px;
+				right: 0px;
+				height: 100%;
+				width: 200px;
+				border-left: 1px solid #000;
+				font-family: 'Archivo Black', arial;
+				font-size: 22px;
+				line-height: 200%;
+				list-style: none;
+				margin: 0px;
+				padding: 0px;
+				z-index: 100;
+				padding-left: 5px;
+			}
+			ul#nav li
+			{
+				border-bottom: 1px solid #000;
+				cursor: cell;
+			}
+			ul#subnav li
+			{
+				font-size: 16px;
+				line-height: 200%;
+				margin: 0px;
+				list-style-type: hiragana-iroha;
+			}
+			ul#nav li:hover
+			{
+				font-weight: bold;
+				cursor: cell;
+			}
+			.yellow
+			{
+
+				background-color: #FFF000;
+			}
+			.b{
+				font-weight: bold;
+			}
+
+			/* drawing */
+
+			#drawing img
+			{
+				display: inline-block;
+				float: left;
+			}
+			#drawing .palets
+			{
+				float:right;
+			}
+	</style>
+	</head>
+	<body>
+		<ul id="nav">
+			<li class="restore yellow"><b>andrew kuznetsov</b></li>
+			<li class="writing">poétry</li>
+			<ul id="subnav" class="poetry">
+				<li class="1 2 4">1 & 2 & 4</li>
+				<li class="7">Causer</li>
+				<li class="5">5</li>
+				<li class="9">Untitled</li>
+				<li class="3 6">3 & 6</li>
+				<li class="8">Misfortune Cookie</li>
+				<li class="10">5777 was</li>
+				<li class="11">lover</li>
+				<li class="13">13 minutes</li>
+			</ul>
+			<li class="drawings">sketches</li>
+			<li>video</li>
+			<li>pages</li>
+			<ul id="subnav">
+				<li>table of fake contents</li>
+				<li>loshn koydesh</li>
+			</ul>
+		</ul>
+
+		<div id="header"><img src="images/poemimg/girl.jpg"/></div>
+
+		<div id="writing">
+			<article id="prognat">.Прогнали меня<br/> как <span class="highlight">собаку</span>. La plupart est superflue.</article>
+
+			<article id="wet">
+				<span class="tab"></span>blanket <span class="jolt">over</span> my body <span class="jolt">like</span><span class="sink"> a net</span> and <span class="highlight">feel</span> the contact <br/>
+			 	<span class="jolt">of</span> bullets against <span class="sink">my fingers</span> <span class="highlight">soft <span class="jolt">and</span> crumbly</span> like <br/>
+			 	the <span class="sink">pitter</span> <span class="jolt">patter</span> of hot rain.<br/>
+			 	<span class="jolt">my capsule</span> inflates, my <span class="highlight">thoughts weigh <span class="jolt">air.</span></span></article>
+
+
+				<article id="bcourses">
+					<img src="images/pngs/bearfacts.gif"/><br/>
+					<p class="tab">Identifiant:
+					<input type="text" value="andrewkuznetsovandrewkuznetsov"/>
+					Mot de passe: 
+					<input type="text" value="Synchronization is the one difference between the sound of an audience clapping and the sound of troops marching.">
+					<input type="submit" value="Se connecter"/></p>
+					<span class="cc">Copyright © 2000-2015 Regents of the University of California. All rights reserved.</span>
+				</article>
+
+			<article id="circle">
+				<p>The wind blew<br/>
+				I caught the feeling of you</p>
+			</article>
+
+			<article id="endormir">
+				<span class="pinky">Je me suis <span class="highlight">endormi</span> pour que le moment où <span class="highlight">je te vois</span> vienne plus vite. Dans ton absence, je <span class="highlight">résiste</span> de me doucher pour garder <span class="highlight">ton odeur sur mon corps</span>. Un jour je me laverai de toi, arrache-coeur. Mais le vent sifflera quand même, t’amenant; je lui <span class="highlight">fera</span>i face, et ce <span class="highlight">sera</span> toi.</span>
+			</article>
+
+			<article id="search">
+				<span class="search">Search</span><input type="text" value="Tu es douceur qui s'endurcit.">
+
+				<span class="web">Web</span>
+				<span class="pslink">Mais <b>en</b> fin de compte- <b>tu</b> es <b>doux</b>.</span><br/>
+				Et je te préfère ainsi.<br/>
+				<a href="http://www.linguee.com/french-english/translation/douleur.html">www.linguee.com/french-english/translation/douceur.html</a></span>
+			</article>
+
+			<article id="longue">
+			<div>
+			<span class="title">Causer</span>
+
+			<p>il faisait beau quand l’on s’est connu- il faisait chaud quand l’on s’est connu- il faisait summer when we met- the harvest- il was ripe.</p>
+
+			<p>il faisait just the right temperature- était justtheripetime- nous étions just the right position relative to stars- i was ready for reality- to evaporate from the gray orsometimes black asphalt of our city (that was our park, our tree, our place in stars) and give way to the false, onceburied, nowsurfacing world in my mind.</p>
+
+			<p>i hung from the real world as from cloth- and i hung there as long as i could hold on to you- puis chute libre, <i>foudroie-moi, the</i> insonorise. <i>toi absent, moi absent</i>– absent from the day, absent from my dreams. every place where you are not stands on the scale and weighs itself less you- it is not home. like a Jew i must find you beneath and within every surface, thinking to the place where you are, building it in my mind, my altar to you- i look at you- imagine the motion of your face for hours- repetitions of your smile, rewinding through your tears shedding up- you loop- everything, the surface, an expression of you</p>
+
+			<p>i try to scratch it but how can i scratch it? imagined myself crying in fifteen different locations over you as if i could summon you to my side with my tears, my salty wet finger lifting you from a film of dust, you under my bed, in the corner where my wet knuckle claws- hypothesis: reminded of you by the train- hypothesis: in the shower, running water, forehead against the floor- hypothesis: sitting in the car, an acoustic guitar lifts me only to let me go- hypothesis: collapse into another’s arms so heavy we stop walking past trees and lampposts but they keep moving in the night as I (need to) weigh down, exhale- i hypothesized, but my body is dumb, unresponsive, not mind, not mine. </p>
+
+			<img src="images/poemimg/flower.png"/>
+
+			<p id="breathe"><i>I’d like you to begin with your eyes open, and just taking a great deep breath. Breathing in through the nose, and out through the mouth. As you breathe in, just feeling the lungs expand as they fill with air. </i><span class="highlight">And as you breathe out, just feeling the body soften a little bit as you gently close the eyes.</span><i> If you would just allow the breath to return to its natural rhythm, in and out of the nose. </i><span class="highlight">And as you pause for a moment, just noticing the feeling of the body. The weight of the body pressing down against the seat beneath you. Contact of the feet on the floor. The hands and the arms and the legs.</span><i> Noticing any sounds around you. </i><span class="highlight">As you pause, just noticing how the body feels. Starting to notice how the body’s breathing, that movement– of breath in the body.</span><i> Some people feel it in the stomach. For others, it’s in the chest or around the diaphragm. Not breathing in any special way. We’re just starting to notice that rising and falling sensation. If you can’t feel anything, try just gently placing your hand on the stomach. </i><span class="highlight">As you follow that movement, the mind will wander away. Almost inevitably.</span><i> No problem if it does, perfectly natural. But as soon as you realize it’s wandered, just acknowledging that, letting it go, and just coming back again to that rising and falling sensation. And just for a moment now, letting go of any focus on the breath, just </i><span class="highlight">letting the mind do whatever it wants for a few seconds. If it wants to think, let it think. And then bring the attention back to the body. Back to that feeling of contact. </span><i>Back to any sounds around you. And you can just gently open your eyes in your own time.</i></p>
+
+			<img src="images/poemimg/flower.png"/>
+
+			<span class="title">Poème-corps</span>
+
+			<p><i>qu’est-ce que tu es beau<br/>
+			<span class="tab">j’ai envie de ta peau </span></i></p>
+
+			<p>voilà mes épaules et ta tête qui s’y enfonce- debout, ton corps pèse gravité vers le mien et je sais que tu entends battre mon coeur quand je te prends la main– dans le lit où l’on vit tu déclenches tes paupières jusqu’à en faire la frontière d'un monde- et moi papillon je bouge pas encerclé yeux fermés mais j'arrache enfin ce continent de toi et je m'asseois sur son terrain. je ressens l'herbe- son odeur- main contre ventre, bras, épaule. tu inspires mon haleine et je m’éloigne vers toi</p>
+
+			<p><i>et vers mes oreilles <br/>
+			<span class="tab">se faufilent tes pensées </span></i></p>
+
+			<p>barbe et toile-poils d’où parvient ta peau blanche comme des planètes éloignées mais ardentes, fissure dans la nuit, dans la rue, vrombissement- tête qui tourne- squelette slip cils dents hanches langue nez nez nez chapeau texto.  dans la station de métro où on attend le train je deviens solipsiste car tu me conviens tant que j'arrive à douter que tu existes: es-tu dieu? apparition? corps? simulation? je me suis déshabillé jusqu’aux chaussettes pour monter l’escalier le plus silencieusement possible vers toi</p>
+
+			<p><i>tu relâches le verrou<br/>
+			<span class="tab">et serpentes dans ma nuque</span></i></p>
+
+			<p>on s'ouvre. quand tu n’es pas là j’évoque ton image pour m’endormir quand même contre toi– je descends dans ta chair jusqu’à la croire mienne, je t’écris des poèmes pour les inscrire sur ton corps quand tu dors un seul doigt c’est ça mon stylo– et tu ne t’en aperçois même pas tu ignores la structure de ta chair les mots les lettres les formes qui composent tes os bah tu ignores ce que tu es et tu es mon poème toi</p>
+
+			<p><i>avec mes lèvres<br/>
+				<span class="tab">je te célèbre</span><br/>
+			je prononce ton corps-poème</i></p>
+			</div>
+			</article>
+
+			<article id="misfortune">
+			<h6>Misfortune Cookie</h6>
+
+			<p>I do not order the orange chicken;<br/>
+			I abstain from the pad see ew.<br/>
+			Instead, I hang back in this red linen chair<br/>
+			And quietly watch you chew.</p>
+			</article>
+			<br/>
+
+
+			<article id="body3">
+			<h6>Untitled</h6>
+
+			<p><i>In one fatal breath, at the summit of a prolonged, uphill battle, he releases her: </i>her, <i>water-born into an ocean of flowers, followed by glitter afterbirth bubbling to the surface with relief, like champagne, like sighs.</i> </p>
+
+			<p class="center">***</p>
+
+			<p>The calm rhythm of the window AC unit; the interference of the paper strips woven through its grill, floating in its breeze. His sisters smacking glossed lips and sugar lip straps, admiring themselves in the greasy mirror as he lay idly on the carpet, gazing up.</p>
+
+			<p class="center">***</p>
+
+			<p>He could hardly help himself. His physical presence had always unsettled him and made him pray for the absence of a body. He was cosmically punished by unwanted hairs, resistant to the tonic of razors and insulted by aftershave. He clawed his nails into his forehead until he hit bone, tracing scar tissue constellations between the pimples on his temples. The universe whispered hope into the faultlines on his face.</p>
+
+			<p>Meanwhile, the boy looked to the sky for solutions but remained spellbound to his bed in the depression of the afternoon, the depression of dusk, the depression of eveningtime, and the depression of dawn... sinking into his mattress, he held on for dear life by the blood and the dirt beneath his fingernails. He looked up, and: illuminated by moonlight, the stars hung as if suspended from invisible fishing lines, bustling with the energy of live bait. In the cool, crystalline wind, they spun with the slow swing of a children’s mobile. When their shimmering light captured his eyes, he knew: they were cast by a God who was specifically sending for him. From his bed, he contemplated biting.</p>
+
+			<p>But his corneas had rotten yellow, irises dried to marbled rye. His eyebrows had been shaved off and resown with industrial staples, and his gaze had been weighed down with the residue of shame. Discouraged by the inimitable ease of his sisters and the stubborn, unliftable covers of his bed, perplexed by the celestial hooks dangling just beyond his reach night after night, he shrunk: auto-lobotomized, elbows in his palms, breath held tenuously like marbles, oxygen trapped in his alveoli for want of that safe, enclosed feeling, the pressure in his diaphragm condensed into rock, the mineral painfully, painfully cold against his unwanted flesh. </p>
+
+			<p class="center">***</p>
+
+			<p><i>Vomit.</i> The clanking of the rocks long stored within him striking the ceramic toilet bowl, diamond and quartz and onyx and obsidian pressure-cooked in his anxious belly now sinking to the uncharted depths of <i>flush</i>. The crackle of kidney stones dissolving into water. Him, a hundred pounds lighter, standing upright.</p>
+
+			<p class="center">***</p>
+
+			<p>He could never have prepared himself for what she would be, but she was not necessarily mystery, for he had long witnessed her in the making, noticed the details of her latent genesis, and contemplated her arrival. In his mind, it was beautiful: there would be flowers in her armpits, and in the place between her legs; there would be seeds stuck in her tear ducts (for sobs that came out dead). He would crown her with thorned roses, and anoint her with his lips. She would be here, and at last, he would eclipse.</p>
+			</article>
+
+
+			
+			<article id="dog">
+				<span class="title">5777 was the year of the bad dog</span>
+				<p>two dogs eating each other<br/>
+				their motion is a graceful dance</p>
+
+				<p>bad dog gets fat the more i starve it<br/>
+				its neck on walks too thick and stubborn to be leashed</p>
+
+				<p>my foot smothers the dog into a corner, its spot,<br/>
+				its body bearing upon paper walls an anvil </p>
+
+				<p>that lands on printers and television sets abandoned curbside<br/>
+				crushing their plastic skeletons like a cheap coffin’s wood</p>
+
+				<p>it barks and runs away laughing, giggles and shattering glass<br/>
+				it shits love messages in the street</p>
+
+				<p>but i am confident the rain will wash them all away<br/>
+				harmony always restored on this earth</p>
+
+				<p>i tried to untrace all evidence of its existence<br/>
+				i let the cold sun melt its passport into the river</p>
+
+				<p>and hid its medical bills beneath a rock in the pond<br/>
+				i shredded every document and igniting the paper mass</p>
+
+				<p>i wet and dirtied my fingers, laying <br/>
+				each burning page down in the puddle, gentle as film</p>
+
+				<p>watched fire and water compete for the body<br/>
+				watched it grunt, exhaling smoke</p>
+
+				<p>one page burned slowest, suffering for an hour<br/>
+				and i will never know why, will never know what <br/>
+				so dared to refuse to be consumed</p>
+
+				<p>i bury its ashes among grounds of soil<br/>
+				and make believe the remains are biodegradable</p>
+
+				<p>a well intentioned badjew atoned too early–<br/>
+				he asked a very bad dog for forgiveness<br/>
+				and then turned off his phone</p>
+
+			</article>
+
+
+			<article id="lover">
+				<b>lover</b>
+
+				</p>two orphans live here, my little boys</p>
+
+				</p>they play, another language quiet between their teeth<br/>
+				one walking the old bicycle,<br/>
+				the other dragging a tree branch, limp in his hands</p>
+
+				</p>beech bark peeled back like an obedient scab<br/>
+				tall blades of dry grass, broken terra cotta pottery<br/>
+				pulverized tree root gingerly in their palms<br/>
+				they are the only life in this jungle<br/>
+				eyes stale but never silent</p>
+
+				</p>the floor here is so brittle and they are so light<br/>
+				only their shadows weigh into the soil of this void<br/>
+				for each fingerprint left in flour, <br/>
+				flour levels the lacunae of the finger, its ravines, its scars</p>
+
+				</p>nights, i must put them to bed–<br/>
+				and as they whisper to each other their touch <br/>
+				in the empty where they sleep,</p>
+
+				</p>i sit beneath the warm blood red light of the standing lamp<br/>
+				and caress the ribs of the photo album pages<br/>
+				from which our boys escaped</p>
+
+				</p>my eyes forever upon your photos from the war, <br/>
+				in which there is you, stoic and worn,<br/>
+				nothing but you, not even me</p>
+
+				</p>when they sneak back outside, i <br/>
+				extend a nurturing hand, i<br/>
+				shepherd them back home<br/>
+				leave milk at the foot of the door for them to lap at<br/>
+				they stare defiant so i must take them in my arms as in a dustpan<br/>
+				i collect them, my little shards of shattered glass<br/>
+				tight against the reading of my palm</p>
+			</article>
+
+			<article id="thirteen">
+				<b>Thirteen minutes in the waiting room</b>
+
+				<p>I walked across the ring of eggshells in the glade <br/>
+				How simple to deny its power to contain <br/>
+				I broke my bones and ignored the sound it made</p> 
+
+				<p>In the safety of the meadow I would no longer stay<br/>
+				From its backlit maze I emerged still a child<br/>
+				I walked across the ring of eggshells in the glade</p>
+
+				<p>Long staked between us, the old oak had decayed <br/>
+				We let our backs bleed, scabbing into its bark <br/>
+				I broke my bones and ignored the sound it made </p>
+
+				<p>Through the no go zone I dared to wade<br/>
+				Clouds of hot soot extinguished me, soft as an exhale<br/>
+				I walked across the ring of eggshells in the glade</p>
+
+				<p>Our hands contorted incubate two grenades <br/>
+				There was no reason or way to cover my ears<br/>
+				I broke my bones and ignored the sound it made </p>
+
+				<p>I hopped the turnstile, kneeled, and prayed<br/>
+				That one day at remains I’d look back unafraid<br/>
+				I walked across the ring of eggshells that you laid <br/>
+				I broke my bones and ignored the sound it made</p>
+			</article>
+		</div>
+
+			<!-- DRAWINGS -->
+
+		<div id="drawings">
+			<img src="file:///Users/andrewkuznetsov/Desktop/art%20project/read/andrew%20kuznetsov/images/pngs/burjkhalifa%20copy.png"/>
+			<img src="file:///Users/andrewkuznetsov/Desktop/art%20project/read/andrew%20kuznetsov/images/pngs/vstan.png"/>
+			<img src="file:///Users/andrewkuznetsov/Desktop/art%20project/read/andrew%20kuznetsov/images/pngs/golos%20copy.png"/>
+			<img src="file:///Users/andrewkuznetsov/Desktop/art%20project/read/andrew%20kuznetsov/images/pngs/iranihasti%20copy.png"/>
+			<img src="file:///Users/andrewkuznetsov/Desktop/art%20project/read/andrew%20kuznetsov/images/pngs/francois%20copy.png"/>
+			<img src="file:///Users/andrewkuznetsov/Desktop/art%20project/read/andrew%20kuznetsov/images/pngs/kinokuniya%20copy.png"/>
+			<img src="file:///Users/andrewkuznetsov/Desktop/art%20project/read/andrew%20kuznetsov/images/pngs/laughcry%20copy.png"/>
+			<img src="file:///Users/andrewkuznetsov/Desktop/art%20project/read/andrew%20kuznetsov/images/pngs/palets.png" class="palets"/><br/>
+			<img src="file:///Users/andrewkuznetsov/Desktop/art%20project/read/andrew%20kuznetsov/images/pngs/blah.png"/>
+			<img src="file:///Users/andrewkuznetsov/Desktop/art%20project/read/andrew%20kuznetsov/images/pngs/man%20copy.png"/>
+
+			<img src="file:///Users/andrewkuznetsov/Desktop/art%20project/read/andrew%20kuznetsov/images/pngs/potomki1%20copy.png" class="hoverable"/>
+			<img src="file:///Users/andrewkuznetsov/Desktop/art%20project/read/andrew%20kuznetsov/images/pngs/pueblo%20copy.png"/>
+			<img src="file:///Users/andrewkuznetsov/Desktop/art%20project/read/andrew%20kuznetsov/images/pngs/illacause.png" class="hoverable"/>
+			<img src="file:///Users/andrewkuznetsov/Desktop/art%20project/read/andrew%20kuznetsov/images/pngs/lookingup.png"/>
+			<img src="file:///Users/andrewkuznetsov/Desktop/art%20project/read/andrew%20kuznetsov/images/pngs/silas.png"/>
+			<img src="file:///Users/andrewkuznetsov/Desktop/art%20project/read/andrew%20kuznetsov/images/pngs/leroi.png" class="palets"/>
+			<img src="file:///Users/andrewkuznetsov/Desktop/art%20project/read/andrew%20kuznetsov/images/pngs/yasoshol.png"/>
+			<img src="file:///Users/andrewkuznetsov/Desktop/art%20project/read/andrew%20kuznetsov/images/pngs/queenofspades%20copy.png"/>
+			<img src="file:///Users/andrewkuznetsov/Desktop/art%20project/read/andrew%20kuznetsov/images/pngs/suma.png"/>
+			<img src="file:///Users/andrewkuznetsov/Desktop/art%20project/read/andrew%20kuznetsov/images/pngs/realrational%20copy.png"/>
+			<img src="file:///Users/andrewkuznetsov/Desktop/art%20project/read/andrew%20kuznetsov/images/pngs/imagenes inesperadas.png" class="hoverable"/>
+			<img src="file:///Users/andrewkuznetsov/Desktop/art%20project/read/andrew%20kuznetsov/images/pngs/salpetriere%20copy.png"/>
+			<img src="file:///Users/andrewkuznetsov/Desktop/art%20project/read/andrew%20kuznetsov/images/pngs/southernborderfaces%20copy.png"/>
+			<img src="file:///Users/andrewkuznetsov/Desktop/art%20project/read/andrew%20kuznetsov/images/pngs/yaplachu%20copy.png"/>
+			<img src="file:///Users/andrewkuznetsov/Desktop/art%20project/read/andrew%20kuznetsov/images/pngs/dan.png"/>
+			<img src="file:///Users/andrewkuznetsov/Desktop/art%20project/read/andrew%20kuznetsov/images/pngs/threeface.png"/>
+			<img src="file:///Users/andrewkuznetsov/Desktop/art%20project/read/andrew%20kuznetsov/images/pngs/count.png"/>
+			<img src="file:///Users/andrewkuznetsov/Desktop/art%20project/read/andrew%20kuznetsov/images/pngs/dubai%20copy.png"/>
+			<img src="file:///Users/andrewkuznetsov/Desktop/art%20project/read/andrew%20kuznetsov/images/pngs/dancer.png"/>
+			<img src="file:///Users/andrewkuznetsov/Desktop/art%20project/read/andrew%20kuznetsov/images/pngs/fajrhand%20copy.png"/>
+			<img src="file:///Users/andrewkuznetsov/Desktop/art%20project/read/andrew%20kuznetsov/images/pngs/sauter%20copy.png"/>
+			<img src="file:///Users/andrewkuznetsov/Desktop/art%20project/read/andrew%20kuznetsov/images/pngs/body%20copy.png" class="palets"/>
+	</body>
+</html>
