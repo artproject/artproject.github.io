@@ -15,6 +15,11 @@ $(document).ready(function(){
 		}, 300);
 
 		$('img').attr('src', 'images/epilepsy_warning.gif');
-		$('#ew_container').css('background-image', 'url(\'http://artproject.space/images/epilepsy_background.png\')');
+		$('#ew_container').css('background-image', 'url(\'http://artproject.space/images/epilepsy_background.gif\')');
+
+		setTimeout(function(){
+			$('#ew_container').hide();
+		}, 700);
+
 	});
 });

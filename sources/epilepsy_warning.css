@@ -14,12 +14,13 @@
 	line-height: 100px;
 	text-align: justify;
 	text-transform: uppercase;
+	background-color: #FFF;
 }
-u
+#ew_container u
 {
 	cursor: pointer;
 }
-span
+#ew_container span
 {
 	background-color: red;
 	color: red;
