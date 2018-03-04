@@ -7,7 +7,10 @@
 		<link href="https://fonts.googleapis.com/css?family=Work Sans:400,700" rel="stylesheet">
 
 		<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-		<script src="/Users/andrewkuznetsov/Desktop/design/jquery.js"></script> <!-- local file -->
+		
+		<!-- EPILEPSY WARNING -->
+		<script type="text/javascript" src="sources/epilepsy_warning.js"></script>
+		<link rel="stylesheet" href="sources/epilepsy_warning.css">
 
 		<script type="text/javascript">
 		$(document).ready(function(){
@@ -253,7 +256,7 @@
 
 			/* links */
 
-			a, a:hover, .pseudolink
+			a, a:hover
 			{
 				text-decoration: none;
 				color: inherit;
@@ -263,6 +266,13 @@
 		</style>
 	</head>
 	<body data-content="the hour is upon us">
+
+		<!-- EPILEPSY WARNING -->
+		<div id="ew_container">
+			<span>This</span><span> </span><span>website</span><span> </span><span>may</span><span> </span><span>potentially</span><span> trigger</span><span> </span><span>seizures</span><span> </span><span>for</span><span> </span><span>people</span><span> </span><span>with</span><span> </span><span>photosensitive</span><span> </span><span>epilepsy.</span><span> </span><span><u>Click to proceed.</u></span><img src="images/epilepsy_warning.png"/>
+		</div>
+		<!-- EPILEPSY WARNING -->
+	
 		<img src="images/faces.png" class="one"/>
 		<div id="container">
 			<div id="main">
@@ -270,7 +280,8 @@
 			</div>
 			<nav>
 				<a href="about.html"><li>about</li></a>
-				<a href="contributors.html"><li class="pseudolink">contributors</li></a>
+				<a href="01.artproject.space/index.html"><li>contributors</li></a>
+				<a href=""><li>ZINE 01</li></a>
 				<a href="submit.html"><li>submit</li></a>
 			</nav>
 		</div>
