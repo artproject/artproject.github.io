@@ -1,0 +1,36 @@
+#ew_container
+{
+	position: fixed:
+	top: 0px;
+	left: 0px;
+	z-index: 1001;
+	padding: 100px;
+	display: block;
+	height: 100vh;
+	background-image: url('http://artproject.space/images/epilepsy_background.png');
+	font-family: 'Seravek', 'Verdana', sans-serif;
+	font-weight: bold;
+	font-size: 60px;
+	line-height: 100px;
+	text-align: justify;
+	text-transform: uppercase;
+}
+u
+{
+	cursor: pointer;
+}
+span
+{
+	background-color: red;
+	color: red;
+    text-shadow:
+    -1px -1px 0 #FFF,
+    1px -1px 0 #FFF,
+    -1px 1px 0 #FFF,
+    1px 1px 0 #FFF;  
+}
+img
+{
+	height: 100px;
+	float: right;
+}
